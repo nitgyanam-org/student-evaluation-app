@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.student_evaluation_app"
+    namespace = "com.nitgyanam.vidyamitra"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.student_evaluation_app"
+        applicationId = "com.nitgyanam.vidyamitra"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.example.student_evaluation_app;
+package com.nitgyanam.vidyamitra;
 
 import android.content.Context;
 
