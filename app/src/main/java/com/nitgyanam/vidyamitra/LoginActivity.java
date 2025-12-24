@@ -1,5 +1,6 @@
 package com.nitgyanam.vidyamitra; // change if needed
 
+import com.google.firebase.FirebaseApp;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -17,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        FirebaseApp.initializeApp(this);
+
 
         emailEt = findViewById(R.id.emailEt);
         passwordEt = findViewById(R.id.passwordEt);

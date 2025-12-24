@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970846085928",
+    "project_id": "student-evaluation-app-1ebcb",
+    "storage_bucket": "student-evaluation-app-1ebcb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970846085928:android:2c6467dce20ccef338a61d",
+        "android_client_info": {
+          "package_name": "com.nitgyanam.vidyamitra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnfdD1Dk-z3XenGGExRs8hheY6Wt4nTtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
