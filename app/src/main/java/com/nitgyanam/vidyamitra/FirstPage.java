@@ -21,7 +21,7 @@ public class FirstPage extends AppCompatActivity {
         });
 
         signupBtn.setOnClickListener(v -> {
-//            startActivity(new Intent(this, SignupActivity.class));
+            startActivity(new Intent(this, SignupActivity.class));
         });
 
     }
