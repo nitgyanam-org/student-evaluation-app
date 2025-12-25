@@ -202,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                 "Admin login successful",
                 Toast.LENGTH_SHORT).show();
 
-//        startActivity(new Intent(this, AdminDashboardActivity.class));
+        startActivity(new Intent(this, AdminDashboardActivity.class));
         finish();
     }
 }

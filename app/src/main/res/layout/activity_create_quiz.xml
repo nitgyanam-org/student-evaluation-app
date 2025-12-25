@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/screenBackground">
+
+    <!-- ===== TOP HEADER (FILLS STATUS BAR) ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/adminHeader"
+        android:orientation="vertical"
+        android:paddingTop="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:gravity="bottom|center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create a new Quiz"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ===== SCROLLABLE CONTENT (KEYBOARD SAFE) ===== -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="160dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Test Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test Title"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimary"/>
+
+            <EditText
+                android:id="@+id/etTestTitle"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_input"
+                android:hint="Enter test title"
+                android:textColor="#000000"
+                android:textColorHint="#777777"
+                android:paddingHorizontal="14dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Select Classes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Classes"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimary"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvClasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginBottom="22dp"/>
+
+            <!-- Section Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Section Name"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimary"/>
+
+            <EditText
+                android:id="@+id/etSectionName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_input"
+                android:hint="e.g. Physics, Maths"
+                android:textColor="#000000"
+                android:textColorHint="#777777"
+                android:paddingHorizontal="14dp"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Add Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnAddSection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/cardBackground"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="+ Add Section"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/iconPurple"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sections List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Start Adding Questions -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnStartAddingQuestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/yellowPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:gravity="center"
+                    android:text="START ADDING QUESTIONS"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/textOnYellow"/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
