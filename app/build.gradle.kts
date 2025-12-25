@@ -48,6 +48,9 @@ dependencies {
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth")
 
+    // Realtime Database (ADD THIS LINE)
+    implementation("com.google.firebase:firebase-database")
+
     // Cloud Firestore
     implementation("com.google.firebase:firebase-firestore")
 }
