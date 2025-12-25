@@ -13,6 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studentevaluationapp">
         <activity
+            android:name=".CreateQuizActivity"
+            android:windowSoftInputMode="adjustResize"
+
+            android:exported="false" />
+
+
+        <activity
+            android:name=".AdminDashboardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
             android:name=".SignupActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
@@ -29,7 +40,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

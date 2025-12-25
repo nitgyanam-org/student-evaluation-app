@@ -3,4 +3,25 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_grey">#666666</color>
+
+    <!-- Background -->
+    <color name="screenBackground">#F3ECF8</color>
+
+    <!-- Header -->
+    <color name="adminHeader">#3C2A56</color>
+
+    <!-- Cards -->
+    <color name="cardBackground">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="textPrimary">#2E2E2E</color>
+    <color name="textOnYellow">#2E2E2E</color>
+
+    <!-- Accent -->
+    <color name="iconPurple">#5A3D8C</color>
+    <color name="yellowPrimary">#FBD009</color>
+
+
+
 </resources>
+
