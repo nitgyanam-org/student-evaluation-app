@@ -1,21 +1,26 @@
 package com.nitgyanam.vidyamitra;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.*;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignupActivity extends AppCompatActivity {
 
     EditText nameEt, emailEt, passwordEt, confirmPasswordEt;
     Spinner classSpinner;
     Button signupBtn;
-    TextView loginRedirectTv;
+    TextView alreadyUserTv, loginTv;
 
     FirebaseAuth mAuth;
 
@@ -32,21 +37,64 @@ public class SignupActivity extends AppCompatActivity {
         confirmPasswordEt = findViewById(R.id.confirmPasswordEt);
         classSpinner = findViewById(R.id.classSpinner);
         signupBtn = findViewById(R.id.signupBtn);
-        loginRedirectTv = findViewById(R.id.loginRedirectTv);
+        alreadyUserTv = findViewById(R.id.alreadyUserTv);
+        loginTv = findViewById(R.id.loginTv);
 
-        // Spinner data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"Select Class","Class 1","Class 2","Class 3","Class 4","Class 5","Class 6","Class 7","Class 8","Class 9","Class 10"}
-        );
-        classSpinner.setAdapter(adapter);
+        setupClassSpinner();
 
         signupBtn.setOnClickListener(v -> validateAndConfirm());
 
-        loginRedirectTv.setOnClickListener(v ->
-                startActivity(new Intent(this, LoginActivity.class))
+        loginTv.setOnClickListener(v -> {
+            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    /**
+     * Spinner setup with custom layouts
+     */
+    private void setupClassSpinner() {
+
+        List<String> classes = new ArrayList<>();
+        classes.add("Select Class");
+        classes.add("Class 1");
+        classes.add("Class 2");
+        classes.add("Class 3");
+        classes.add("Class 4");
+        classes.add("Class 5");
+        classes.add("Class 6");
+        classes.add("Class 7");
+        classes.add("Class 8");
+        classes.add("Class 9");
+        classes.add("Class 10");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.item_spinner_class,              // YOUR custom layout
+                classes
         );
+
+        adapter.setDropDownViewResource(R.layout.item_spinner_class_dropdown);
+        classSpinner.setAdapter(adapter);
+
+        // Make "Select Class" look like a hint
+        classSpinner.setSelection(0, false);
+
+        classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.parseColor("#999999")); // hint color
+                } else {
+                    tv.setTextColor(Color.parseColor("#2E004F")); // normal text color
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
     }
 
     private void validateAndConfirm() {
@@ -56,8 +104,10 @@ public class SignupActivity extends AppCompatActivity {
         String confirmPassword = confirmPasswordEt.getText().toString();
         String selectedClass = classSpinner.getSelectedItem().toString();
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
-                TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) ||
+        if (TextUtils.isEmpty(name) ||
+                TextUtils.isEmpty(email) ||
+                TextUtils.isEmpty(password) ||
+                TextUtils.isEmpty(confirmPassword) ||
                 selectedClass.equals("Select Class")) {
 
             Toast.makeText(this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
@@ -78,40 +128,52 @@ public class SignupActivity extends AppCompatActivity {
                 .setTitle("Confirm")
                 .setMessage("Are you sure to move ahead?")
                 .setNegativeButton("No, take me back", null)
-                .setPositiveButton("Yes", (dialog, which) -> createAccount(email, password))
+                .setPositiveButton("Yes", (dialog, which) ->
+                        createAccount(email, password))
                 .show();
     }
 
     private void createAccount(String email, String password) {
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
+
                     if (task.isSuccessful()) {
 
                         FirebaseUser user = mAuth.getCurrentUser();
+
                         if (user != null) {
                             user.sendEmailVerification()
                                     .addOnCompleteListener(verifyTask -> {
+
                                         if (verifyTask.isSuccessful()) {
-                                            Toast.makeText(this,
+
+                                            Toast.makeText(
+                                                    this,
                                                     "Verification email sent. Please verify before login.",
-                                                    Toast.LENGTH_LONG).show();
+                                                    Toast.LENGTH_LONG
+                                            ).show();
 
                                             mAuth.signOut();
+
                                             Intent intent = new Intent(this, LoginActivity.class);
                                             intent.putExtra("student_name", nameEt.getText().toString().trim());
                                             intent.putExtra("student_class", classSpinner.getSelectedItem().toString());
                                             intent.putExtra("student_email", emailEt.getText().toString().trim());
                                             startActivity(intent);
                                             finish();
-
                                         }
                                     });
                         }
 
                     } else {
-                        Toast.makeText(this,
-                                task.getException().getMessage(),
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                this,
+                                task.getException() != null
+                                        ? task.getException().getMessage()
+                                        : "Signup failed",
+                                Toast.LENGTH_SHORT
+                        ).show();
                     }
                 });
     }

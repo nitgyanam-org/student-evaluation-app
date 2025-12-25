@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText emailEt, passwordEt;
     Button loginBtn;
-
+    TextView signupTv;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
 
@@ -37,21 +38,29 @@ public class LoginActivity extends AppCompatActivity {
         emailEt = findViewById(R.id.emailEt);
         passwordEt = findViewById(R.id.passwordEt);
         loginBtn = findViewById(R.id.loginBtn);
+        signupTv = findViewById(R.id.signupTv);
+
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         // Receive data from Signup
-        Intent intent = getIntent();
-        studentName = intent.getStringExtra("student_name");
-        studentClass = intent.getStringExtra("student_class");
-        studentEmailFromSignup = intent.getStringExtra("student_email");
+        Intent incomingIntent = getIntent();
+        studentName = incomingIntent.getStringExtra("student_name");
+        studentClass = incomingIntent.getStringExtra("student_class");
+        studentEmailFromSignup = incomingIntent.getStringExtra("student_email");
+
 
         if (studentEmailFromSignup != null) {
             emailEt.setText(studentEmailFromSignup);
         }
 
         loginBtn.setOnClickListener(v -> loginUser());
+        signupTv.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void loginUser() {

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Studentevaluationapp">
         <activity
             android:name=".SignupActivity"
-            android:exported="false" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
