@@ -191,7 +191,9 @@ public class LoginActivity extends AppCompatActivity {
                 "Login successful",
                 Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(LoginActivity.this, StudentDashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 
