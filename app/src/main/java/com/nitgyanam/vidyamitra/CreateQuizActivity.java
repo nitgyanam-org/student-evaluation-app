@@ -107,7 +107,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, AddQuestionActivity.class);
             intent.putExtra("TEST_TITLE", testTitle);
             intent.putStringArrayListExtra("CLASSES",
                     new ArrayList<>(selectedClasses));

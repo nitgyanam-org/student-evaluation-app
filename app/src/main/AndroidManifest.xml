@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studentevaluationapp">
         <activity
-            android:name=".CreateQuizActivity"
-            android:windowSoftInputMode="adjustResize"
-
+            android:name=".AddQuestionActivity"
             android:exported="false" />
-
-
+        <activity
+            android:name=".CreateQuizActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AdminDashboardActivity"
             android:exported="false"
